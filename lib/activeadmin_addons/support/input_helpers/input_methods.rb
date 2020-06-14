@@ -22,9 +22,12 @@ module ActiveAdminAddons
       valid_method.to_s.singularize.chomp("_id")
     end
 
-    def method_model
-      object_class.reflect_on_association(association_name).try(:klass) ||
+    def method_model      
+      if (object_class.respond_to?(:reflect_on_association))
+        return object_class.reflect_on_association(association_name).try(:klass) ||
         association_name.classify.constantize
+      end
+      association_name.classify.constantize
     end
 
     def tableize_method

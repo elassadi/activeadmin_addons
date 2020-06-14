@@ -33,6 +33,8 @@ class NestedSelectInput < ActiveAdminAddons::InputBase
   end
 
   def validate_level_data!(level_key, previous_level_key)
+
+    
     current_level_number = get_level_number(level_key)
     previous_level_number = get_level_number(previous_level_key)
 
